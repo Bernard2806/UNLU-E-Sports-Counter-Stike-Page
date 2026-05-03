@@ -1,18 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --bg-1: #c3c7cb;
-  --bg-2: #b4b8bb;
-  --bg-3: #e3e3e3;
-  --ink: #1b1b1b;
-  --ink-soft: #3d3d3d;
-  --accent: #0a64ad;
-  --accent-dark: #063a66;
-  --cream: #fff7d6;
-  --win-light: #ffffff;
-  --win-mid: #d6d6d6;
-  --win-shadow: #8a8a8a;
-  --win-dark: #3e3e3e;
+  --bg-dark: #0f1113;
+  --bg-panel: #1e2226;
+  --bg-panel-light: #2a2f34;
+  --border-outer: #3a4148;
+  --border-inner: #000000;
+  --text-main: #c4ccd4;
+  --text-title: #ffffff;
+  --accent: #2e8b57; /* Classic CS Green */
+  --accent-light: #3cb371;
+  --link-color: #5da9e9;
+  --link-hover: #ffffff;
 }
 
 * {
@@ -21,177 +20,221 @@
 
 body {
   margin: 0;
-  color: var(--ink);
-  font-family: "MS Sans Serif", "Microsoft Sans Serif", "Tahoma", "Verdana", "Geneva", sans-serif;
-  background-color: var(--bg-1);
-  background-image:
-    linear-gradient(0deg, rgba(255, 255, 255, 0.35) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.25) 1px, transparent 1px),
-    linear-gradient(180deg, var(--bg-2), var(--bg-1));
-  background-size: 28px 28px, 28px 28px, 100% 100%;
+  color: var(--text-main);
+  font-family: "Tahoma", "Verdana", "Arial", sans-serif;
+  background-color: var(--bg-dark);
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)),
+    repeating-linear-gradient(
+      45deg,
+      #0a0b0d,
+      #0a0b0d 2px,
+      #131518 2px,
+      #131518 4px
+    );
   background-attachment: fixed;
 }
 
 a {
-  color: var(--accent);
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--link-hover);
   text-decoration: underline;
 }
 
-h1,
-h2,
-h3 {
-  font-family: "Trebuchet MS", "Lucida Sans", "Tahoma", sans-serif;
+h1, h2, h3, h4 {
+  font-family: "Trebuchet MS", "Tahoma", sans-serif;
+  margin: 0;
 }
 
+/* Base Panel (Web 2.0 / Forum Style) */
 .win-window {
-  background: var(--bg-3);
-  border: 2px solid var(--win-dark);
-  box-shadow:
-    inset 2px 2px 0 var(--win-light),
-    inset -2px -2px 0 var(--win-shadow),
-    6px 6px 0 rgba(0, 0, 0, 0.2);
+  background: var(--bg-panel);
+  border: 1px solid var(--border-inner);
+  box-shadow: 0 0 0 1px var(--border-outer), 0 4px 8px rgba(0,0,0,0.5);
+  margin-bottom: 1rem;
 }
 
+/* Panel Titlebar (Glossy Metallic Gradient) */
 .win-titlebar {
-  background: linear-gradient(90deg, var(--accent-dark), var(--accent));
-  color: #fff;
-  padding: 6px 10px;
+  background: linear-gradient(180deg, #5b656f 0%, #3a4148 50%, #2e343a 51%, #1d2125 100%);
+  color: var(--text-title);
+  padding: 8px 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-weight: 700;
-  letter-spacing: 0.4px;
-  text-shadow: 1px 1px 0 #000;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 2px #000;
+  border-bottom: 1px solid var(--border-inner);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
 }
 
 .win-controls {
-  display: flex;
-  gap: 6px;
+  display: none; /* Hide windows 98 controls */
 }
 
-.win-control {
-  width: 14px;
-  height: 14px;
-  background: var(--bg-3);
-  border: 1px solid var(--win-dark);
-  box-shadow: inset 1px 1px 0 var(--win-light), inset -1px -1px 0 var(--win-shadow);
-}
-
+/* Panel Content Area */
 .win-content {
-  padding: 18px;
+  padding: 12px;
 }
 
+/* Inner Panels (e.g. for widgets or lists) */
 .win-panel {
-  background: var(--cream);
-  border: 2px solid var(--win-shadow);
-  box-shadow: inset 2px 2px 0 var(--win-light), inset -2px -2px 0 var(--win-shadow);
+  background: var(--bg-panel-light);
+  border: 1px solid var(--border-inner);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
 }
 
+/* Web 2.0 Glossy Button */
 .win-button {
-  background: var(--bg-3);
-  border: 2px solid var(--win-shadow);
-  padding: 6px 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  box-shadow: inset 2px 2px 0 var(--win-light), inset -2px -2px 0 var(--win-dark);
+  display: inline-block;
+  background: linear-gradient(180deg, #444d56 0%, #2e343a 50%, #22262a 51%, #16191c 100%);
+  color: var(--text-title);
+  border: 1px solid #000;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 1px 2px rgba(0,0,0,0.4);
+  padding: 6px 14px;
+  font-weight: bold;
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.1s;
+}
+
+.win-button:hover {
+  background: linear-gradient(180deg, #505963 0%, #3a4148 50%, #2e343a 51%, #1d2125 100%);
+  text-decoration: none;
 }
 
 .win-button:active {
-  box-shadow: inset -2px -2px 0 var(--win-light), inset 2px 2px 0 var(--win-dark);
+  background: linear-gradient(180deg, #1d2125 0%, #2e343a 50%, #3a4148 51%, #505963 100%);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.6);
 }
 
-.win-field {
-  background: #fff;
-  border: 2px solid var(--win-shadow);
-  box-shadow: inset 2px 2px 0 var(--win-light), inset -2px -2px 0 var(--win-shadow);
+/* Inputs */
+.win-field, .win-input {
+  background: #111315;
+  color: #fff;
+  border: 1px solid #000;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.05);
   padding: 6px 10px;
-  font-family: "Courier New", "Lucida Console", monospace;
-}
-
-.win-input {
-  width: 100%;
-  background: #fff;
-  border: 2px solid var(--win-shadow);
-  box-shadow: inset 2px 2px 0 var(--win-light), inset -2px -2px 0 var(--win-shadow);
-  padding: 8px 10px;
-  font-family: "Courier New", "Lucida Console", monospace;
+  font-family: "Tahoma", sans-serif;
+  font-size: 0.8rem;
 }
 
 .win-list {
-  border: 2px solid var(--win-shadow);
-  background: #fff;
-  box-shadow: inset 2px 2px 0 var(--win-light), inset -2px -2px 0 var(--win-shadow);
+  background: #111315;
+  border: 1px solid #000;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.05);
 }
 
+/* Badges (like CS green texts) */
 .badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
   background: #000;
-  color: #00ff66;
-  padding: 4px 8px;
-  font-family: "Lucida Console", "Courier New", monospace;
-  border: 1px solid #00ff66;
-}
-
-.scanline {
-  position: relative;
-  overflow: hidden;
+  color: var(--accent);
+  padding: 3px 6px;
+  font-family: "Tahoma", sans-serif;
+  font-size: 0.75rem;
+  border: 1px solid #111;
+  border-radius: 2px;
+  font-weight: bold;
 }
 
 .scanline::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.05) 0,
-    rgba(0, 0, 0, 0.05) 1px,
-    transparent 1px,
-    transparent 3px
-  );
-  pointer-events: none;
+  display: none; /* Disable scanlines */
 }
 
+/* Dark metallic marquee */
 .marquee {
-  background: #000;
-  color: #ffea00;
-  font-weight: 700;
-  padding: 6px 0;
-  border-top: 2px solid var(--win-dark);
-  border-bottom: 2px solid var(--win-dark);
-  text-transform: uppercase;
+  background: linear-gradient(180deg, #222 0%, #111 100%);
+  color: var(--text-main);
+  font-weight: bold;
+  font-size: 0.85rem;
+  padding: 8px 0;
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #000;
+  text-shadow: 1px 1px 0 #000;
 }
 
+/* Photo frames / Banners */
 .photo-frame {
-  border: 3px solid var(--win-dark);
-  box-shadow: inset 2px 2px 0 var(--win-light), inset -2px -2px 0 var(--win-shadow);
-  background: #000;
+  border: 1px solid #000;
+  background: #111;
+  padding: 4px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
 }
 
 .photo-frame img {
   display: block;
   width: 100%;
   height: auto;
-  filter: saturate(0.9) contrast(1.05);
+  border: 1px solid #222;
 }
 
 .blink {
-  animation: blink 1.6s steps(2, start) infinite;
+  animation: blink 1s step-end infinite;
 }
 
 @keyframes blink {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.25;
-  }
-  100% {
-    opacity: 1;
-  }
+  50% { opacity: 0.5; }
 }
 
 .glow {
-  text-shadow: 0 0 6px rgba(0, 255, 102, 0.65);
+  color: var(--accent-light);
+  text-shadow: 0 0 5px var(--accent);
 }
+
+/* Custom Nav Bar matching the 2000s reference */
+.clan-nav {
+  background: linear-gradient(180deg, #4b5258 0%, #2f343a 50%, #23272c 51%, #15181b 100%);
+  border-top: 1px solid #6c7680;
+  border-bottom: 1px solid #000;
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.clan-nav a {
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-right: 1px solid #000;
+  border-left: 1px solid #4b5258;
+  font-size: 0.85rem;
+  text-shadow: 1px 1px 2px #000;
+}
+
+.clan-nav a:first-child {
+  border-left: none;
+}
+
+.clan-nav a:hover {
+  background: linear-gradient(180deg, #5b636a 0%, #3e454c 50%, #30363b 51%, #1f2327 100%);
+  text-decoration: none;
+}
+
+/* Main Banner Area */
+.clan-header {
+  position: relative;
+  background: #000;
+  border: 1px solid #000;
+  box-shadow: 0 0 0 1px #3a4148;
+  margin-bottom: 0px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.clan-header img {
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  display: block;
+}
+

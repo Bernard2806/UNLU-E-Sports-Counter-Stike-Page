@@ -7,7 +7,7 @@ const serverQuery = "https://api.gamemonitoring.net/server/190.106.0.25:27015";
 const serverRules = "https://www.gametracker.com/server_info/190.106.0.25:27015/";
 const serverConnect = `steam://connect/${serverIp}`;
 const mapRotation = ["de_dust2", "de_inferno", "de_nuke", "cs_office", "de_train", "fy_snow"];
-const mods = ["AMX Mod X", "Anti-Cheat", "VIP slots", "Friendly fire off", "FastDL"]; 
+const mods = ["AMX Mod X", "Anti-Cheat", "VIP slots", "Friendly fire off", "FastDL"];
 const updates = [
   "Inscripciones abiertas para el torneo interno de mayo.",
   "Nueva rotacion nocturna con mapas clasicos.",
@@ -54,259 +54,169 @@ const storeItems = [
     <meta name="generator" content={Astro.generator} />
     <meta
       name="description"
-      content="Servidor Counter-Strike 1.6 UNLu E-Sports. Info del server, IP, estado y novedades con estetica retro 90s."
+      content="Servidor Counter-Strike 1.6 UNLu E-Sports. Info del server, IP, estado y clan."
     />
-    <title>UNLu E-Sports CS 1.6</title>
+    <title>UNLu E-Sports CS 1.6 | Clan</title>
   </head>
   <body>
-    <div class="marquee">
-      <marquee scrollamount="6">UNLu E-SPORTS - COUNTER STRIKE 1.6 - BIENVENIDOS AL SERVER OFICIAL</marquee>
-    </div>
-    <main class="px-4 py-6 md:py-10">
-      <section class="win-window max-w-5xl mx-auto scanline">
-        <header class="win-titlebar">
-          <div class="flex items-center gap-2">
-            <span>UNLu E-Sports // CS 1.6 Hub</span>
-          </div>
-          <div class="win-controls" aria-hidden="true">
-            <span class="win-control"></span>
-            <span class="win-control"></span>
-            <span class="win-control"></span>
-          </div>
-        </header>
-        <div class="win-content">
-          <div class="flex flex-col gap-6 lg:flex-row">
-            <div class="lg:w-2/3 space-y-4">
-              <div class="win-panel p-4">
-                <h1 class="text-2xl md:text-3xl font-bold">{serverName}</h1>
-                <p class="text-sm text-[var(--ink-soft)]">
-                  Universidad Nacional de Lujan - Comunidad competitiva retro, frag limpio y nostalgia Windows 98.
-                </p>
-                <div class="mt-4 flex flex-col sm:flex-row gap-3">
-                  <div class="win-field text-sm">IP: {serverIp}</div>
-                  <a class="win-button inline-flex items-center justify-center" href={serverConnect}>
-                    Conectar
-                  </a>
-                  <a class="win-button inline-flex items-center justify-center" href={serverRules} target="_blank">
-                    Ver estado
-                  </a>
-                </div>
-              </div>
+    <div class="max-w-6xl mx-auto mt-4 px-2">
+      <!-- HEADER BANNER -->
+      <header class="clan-header">
+        <img src="/images/cs_header.png" alt="UNLu E-Sports Banner" />
+      </header>
 
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="win-panel p-4">
-                  <h2 class="font-bold text-lg">Estado del servidor</h2>
-                  <p class="text-sm text-[var(--ink-soft)]">
-                    Consulta automatica via proveedores externos.
-                  </p>
-                  <div class="mt-3 space-y-2 text-sm">
-                    <div class="flex items-center justify-between">
-                      <span>Monitor</span>
-                      <a href={serverQuery} class="badge" target="_blank">LIVE</a>
-                    </div>
-                    <div class="flex items-center justify-between">
-                      <span>Mapa actual</span>
-                      <span class="badge">auto</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                      <span>Jugadores</span>
-                      <span class="badge">auto</span>
-                    </div>
-                  </div>
-                  <p class="mt-3 text-xs">
-                    Si el widget no responde, usa el boton "Ver estado" para datos en vivo.
-                  </p>
+      <!-- NAVIGATION -->
+      <nav class="clan-nav">
+        <a href="#">Home</a>
+        <a href="#">Guias</a>
+        <a href="#">Downloads</a>
+        <a href="#">Servers</a>
+      </nav>
+
+      <main class="flex flex-col lg:flex-row gap-4 mb-10">
+        
+        <!-- LEFT SIDEBAR -->
+        <aside class="lg:w-1/4 space-y-4">
+          <!-- SERVERS -->
+          <div class="win-window">
+            <header class="win-titlebar">SERVERS</header>
+            <div class="win-content text-sm space-y-2 font-mono">
+              <div>
+                <span class="text-green-500 font-bold">[PUBLICO]</span><br/>
+                {serverIp}<br/>
+                &lt;co*&gt; CS 1.6 #15
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- CENTER CONTENT -->
+        <div class="lg:w-2/4 space-y-4">
+          
+          <!-- DOWNLOAD BLOCK -->
+          <div class="win-window">
+            <header class="win-titlebar">Counter-Strike 1.6 download</header>
+            <div class="win-content">
+              <h2 class="font-bold mb-2 text-lg">Descargar: Counter-Strike 1.6</h2>
+              <p class="text-sm mb-4">El Counter-Strike No Steam Full v7. Recordar bajar el parche v23b para jugar Online.</p>
+              
+              <div class="flex gap-4 items-center bg-[#111] p-4 border border-black shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
+                <div class="photo-frame w-24 h-24 shrink-0">
+                  <img src="/images/cs_icon.png" alt="CS Download" class="w-full h-full object-cover" />
                 </div>
-                <div class="win-panel p-4">
-                  <h2 class="font-bold text-lg">Mapas clasicos</h2>
-                  <div class="win-list mt-3 p-3 text-sm grid grid-cols-2 gap-2">
-                    {mapRotation.map((map) => (
-                      <div class="flex items-center gap-2" key={map}>
-                        <span class="badge">MAP</span>
-                        <span>{map}</span>
-                      </div>
-                    ))}
-                  </div>
+                <div class="flex-grow text-center">
+                  <a href="#" class="win-button text-lg px-8 py-3 w-full bg-gradient-to-b from-[#4a5560] to-[#1e2327]">
+                    <span class="text-green-400 mr-2">⬇</span> DESCARGAR
+                  </a>
+                  <p class="mt-2 text-xs text-gray-400">Peso: 240MB | Descargas: 9,794,405</p>
                 </div>
               </div>
             </div>
-            <aside class="lg:w-1/3 space-y-4">
-              <div class="photo-frame">
-                <img
-                  src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1q7l.webp"
-                  alt="Counter-Strike 1.6 cover"
-                  loading="lazy"
-                />
+          </div>
+
+          <!-- NOTICIAS -->
+          <div class="win-window">
+            <header class="win-titlebar">Noticias del Clan</header>
+            <div class="win-content space-y-3">
+              {updates.map((item) => (
+                <div class="win-panel p-3 text-sm">
+                  <span class="text-green-400 font-bold mr-2">&gt;</span> {item}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- TIENDA / VIP -->
+          <div class="win-window">
+            <header class="win-titlebar">Tienda VIP</header>
+            <div class="win-content">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="store-grid">
+                {storeItems.map((item) => (
+                  <div class="win-panel p-3 text-sm flex flex-col justify-between h-full">
+                    <div>
+                      <div class="flex items-center justify-between mb-2">
+                        <p class="font-bold text-white">{item.name}</p>
+                        <span class="badge glow">{item.priceLabel}</span>
+                      </div>
+                      <p class="text-gray-400 text-xs mb-3">{item.desc}</p>
+                    </div>
+                    <button
+                      class="win-button w-full"
+                      data-action="add"
+                      data-id={item.id}
+                      data-name={item.name}
+                      data-price={item.price}
+                    >
+                      Agregar
+                    </button>
+                  </div>
+                ))}
               </div>
-              <div class="photo-frame">
-                <img
-                  src="https://images.igdb.com/igdb/image/upload/t_720p/sc8z84.webp"
-                  alt="Counter-Strike 1.6 in-game"
-                  loading="lazy"
-                />
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT SIDEBAR -->
+        <aside class="lg:w-1/4 space-y-4">
+          <!-- CARRITO Y ACCESO -->
+          <div class="win-window">
+            <header class="win-titlebar">Area de Jugador</header>
+            <div class="win-content space-y-4 text-sm">
+              <div>
+                <button class="win-button w-full mb-2" id="login-btn">Entrar con Google</button>
+                <button class="win-button w-full mb-2" id="logout-btn" hidden>Salir</button>
+                <div class="text-xs text-gray-400 flex justify-between" id="auth-status">
+                  <span>Estado:</span> <span class="badge blink">offline</span>
+                </div>
+                <div class="text-xs text-gray-400 flex justify-between mt-1" id="user-label">
+                  <span>Usuario:</span> <span class="badge">anon</span>
+                </div>
               </div>
-              <div class="win-panel p-4 text-sm">
-                <h3 class="font-bold">Mods activos</h3>
-                <ul class="mt-2 space-y-1">
+
+              <hr class="border-gray-700" />
+
+              <div>
+                <h3 class="font-bold mb-2">Carrito (<span id="cart-count">0</span>)</h3>
+                <div class="win-list p-2 text-xs mb-2" id="cart-items" style="min-height: 50px;">
+                  <p class="text-gray-500">Sin items.</p>
+                </div>
+                <div class="flex justify-between items-center mb-3">
+                  <span>Total:</span>
+                  <span class="badge" id="cart-total">ARS 0</span>
+                </div>
+                <div class="text-center text-xs mb-2" id="cart-status">
+                  <span class="badge blink">logea para comprar</span>
+                </div>
+                <button class="win-button w-full" id="checkout-btn">Pagar MercadoPago</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- SERVER INFO -->
+          <div class="win-window">
+            <header class="win-titlebar">Info del Server</header>
+            <div class="win-content text-sm space-y-3">
+              <div class="win-panel p-2">
+                <p class="font-bold mb-1">Conectar</p>
+                <input type="text" value={`connect ${serverIp}`} readonly class="win-input text-xs w-full mb-2 text-center" />
+                <a href={serverConnect} class="win-button w-full block text-center">Abrir Steam</a>
+              </div>
+              <div>
+                <p class="font-bold mb-1">Mods Activos</p>
+                <ul class="text-xs space-y-1 text-gray-400">
                   {mods.map((mod) => (
-                    <li key={mod} class="flex items-center gap-2">
-                      <span class="badge">OK</span>
-                      <span>{mod}</span>
-                    </li>
+                    <li>- {mod}</li>
                   ))}
                 </ul>
               </div>
-            </aside>
+            </div>
           </div>
-        </div>
-      </section>
+        </aside>
 
-      <section class="max-w-5xl mx-auto mt-6 grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div class="win-window">
-          <header class="win-titlebar">
-            <span>Noticias</span>
-            <div class="win-controls" aria-hidden="true">
-              <span class="win-control"></span>
-              <span class="win-control"></span>
-              <span class="win-control"></span>
-            </div>
-          </header>
-          <div class="win-content text-sm space-y-3">
-            {updates.map((item) => (
-              <div key={item} class="win-panel p-3">
-                <p>{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div class="win-window">
-          <header class="win-titlebar">
-            <span>Horarios</span>
-            <div class="win-controls" aria-hidden="true">
-              <span class="win-control"></span>
-              <span class="win-control"></span>
-              <span class="win-control"></span>
-            </div>
-          </header>
-          <div class="win-content text-sm space-y-2">
-            <div class="win-panel p-3">
-              <p class="font-bold">Scrims</p>
-              <p>Martes y jueves - 21:00 a 00:30</p>
-            </div>
-            <div class="win-panel p-3">
-              <p class="font-bold">Publico</p>
-              <p>Todos los dias - 18:00 a 02:00</p>
-            </div>
-            <div class="win-panel p-3">
-              <p class="font-bold">Entrenamientos</p>
-              <p>Sabados - 16:00 a 20:00</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="win-window">
-          <header class="win-titlebar">
-            <span>Contacto</span>
-            <div class="win-controls" aria-hidden="true">
-              <span class="win-control"></span>
-              <span class="win-control"></span>
-              <span class="win-control"></span>
-            </div>
-          </header>
-          <div class="win-content text-sm space-y-3">
-            <div class="win-panel p-3">
-              <p class="font-bold">Discord</p>
-              <p>discord.gg/unlu-esports</p>
-            </div>
-            <div class="win-panel p-3">
-              <p class="font-bold">Mail</p>
-              <p>esports@unlu.edu.ar</p>
-            </div>
-            <div class="win-panel p-3">
-              <p class="font-bold">Ubicacion</p>
-              <p>Lujan, Buenos Aires, Argentina</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="max-w-5xl mx-auto mt-6 win-window">
-        <header class="win-titlebar">
-          <span>Tienda UNLu</span>
-          <div class="win-controls" aria-hidden="true">
-            <span class="win-control"></span>
-            <span class="win-control"></span>
-            <span class="win-control"></span>
-          </div>
-        </header>
-        <div class="win-content">
-          <div class="flex flex-col gap-4 lg:flex-row">
-            <div class="lg:w-2/3 space-y-4">
-              <div class="win-panel p-4">
-                <h2 class="font-bold text-lg">Items disponibles</h2>
-                <div class="mt-3 grid grid-cols-1 md:grid-cols-2 gap-3" id="store-grid">
-                  {storeItems.map((item) => (
-                    <div key={item.id} class="win-panel p-3 text-sm">
-                      <div class="flex items-center justify-between">
-                        <p class="font-bold">{item.name}</p>
-                        <span class="badge glow">{item.priceLabel}</span>
-                      </div>
-                      <p class="mt-2">{item.desc}</p>
-                      <button
-                        class="win-button mt-3 w-full"
-                        data-action="add"
-                        data-id={item.id}
-                        data-name={item.name}
-                        data-price={item.price}
-                      >
-                        Agregar al carrito
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <aside class="lg:w-1/3 space-y-4">
-              <div class="win-panel p-4 text-sm">
-                <h3 class="font-bold">Acceso de jugadores</h3>
-                <p class="mt-2">
-                  Ingresa con Google (Supabase OAuth) para sincronizar tus compras con el server.
-                </p>
-                <button class="win-button mt-3 w-full" id="login-btn">Entrar con Google</button>
-                <button class="win-button mt-2 w-full" id="logout-btn" hidden>Salir</button>
-                <div class="mt-2 text-xs" id="auth-status">
-                  Estado: <span class="badge blink">offline</span>
-                </div>
-                <div class="mt-2 text-xs" id="user-label">
-                  Usuario: <span class="badge">anon</span>
-                </div>
-              </div>
-              <div class="win-panel p-4 text-sm">
-                <h3 class="font-bold">Carrito <span class="badge" id="cart-count">0</span></h3>
-                <div class="win-list mt-2 p-2 text-xs" id="cart-items">
-                  <p class="text-[var(--ink-soft)]">Sin items.</p>
-                </div>
-                <div class="mt-2 text-xs" id="cart-status">
-                  <span class="badge blink">logea para comprar</span>
-                </div>
-                <div class="mt-3 flex items-center justify-between text-sm">
-                  <span>Total</span>
-                  <span class="badge" id="cart-total">ARS 0</span>
-                </div>
-                <button class="win-button mt-3 w-full" id="checkout-btn">Pagar con Mercado Pago</button>
-              </div>
-              <div class="win-panel p-4 text-xs">
-                <p>
-                  Checkout Mercado Pago usa un endpoint interno. Necesitas configurar las variables
-                  de entorno y webhooks para activar la pasarela.
-                </p>
-              </div>
-            </aside>
-          </div>
-        </div>
-      </section>
-    </main>
+      </main>
+    </div>
+    
     <script>
       window.__SUPABASE_URL__ = import.meta.env.PUBLIC_SUPABASE_URL;
       window.__SUPABASE_ANON_KEY__ = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
