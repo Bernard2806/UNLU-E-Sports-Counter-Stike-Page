@@ -8,6 +8,19 @@ const state = {
   cart: [],
 };
 
+let unluPolicy;
+if (window.trustedTypes && window.trustedTypes.createPolicy) {
+  try {
+    unluPolicy = window.trustedTypes.createPolicy('unlu-policy', {
+      createHTML: (string) => string,
+    });
+  } catch (e) {
+    console.warn("TrustedTypes policy creation failed:", e);
+  }
+}
+const safeHTML = (html) => unluPolicy ? unluPolicy.createHTML(html) : html;
+
+
 const els = {
   loginBtn: document.querySelector("#login-btn"),
   logoutBtn: document.querySelector("#logout-btn"),
@@ -33,10 +46,10 @@ const supabase = SUPABASE_URL && SUPABASE_ANON_KEY
 const renderAuth = () => {
   if (!els.authStatus) return;
   if (state.user) {
-    els.authStatus.innerHTML = `Estado: <span class="badge glow">online</span>`;
+    els.authStatus.innerHTML = safeHTML(`Estado: <span class="badge glow">online</span>`);
     els.loginBtn?.setAttribute("hidden", "true");
     els.logoutBtn?.removeAttribute("hidden");
-    els.cartStatus && (els.cartStatus.innerHTML = "<span class=\"badge glow\">listo para comprar</span>");
+    els.cartStatus && (els.cartStatus.innerHTML = safeHTML("<span class=\"badge glow\">listo para comprar</span>"));
     els.checkoutBtn?.removeAttribute("disabled");
     els.checkoutBtn?.classList.remove("opacity-50", "cursor-not-allowed");
     els.storeGrid?.querySelectorAll("button[data-action='add']").forEach((btn) => {
@@ -45,13 +58,13 @@ const renderAuth = () => {
     });
     if (els.userLabel) {
       const email = state.user.email ?? "usuario";
-      els.userLabel.innerHTML = `Usuario: <span class="badge glow">${email}</span>`;
+      els.userLabel.innerHTML = safeHTML(`Usuario: <span class="badge glow">${email}</span>`);
     }
   } else {
-    els.authStatus.innerHTML = `Estado: <span class="badge blink">offline</span>`;
+    els.authStatus.innerHTML = safeHTML(`Estado: <span class="badge blink">offline</span>`);
     els.logoutBtn?.setAttribute("hidden", "true");
     els.loginBtn?.removeAttribute("hidden");
-    els.cartStatus && (els.cartStatus.innerHTML = "<span class=\"badge blink\">logea para comprar</span>");
+    els.cartStatus && (els.cartStatus.innerHTML = safeHTML("<span class=\"badge blink\">logea para comprar</span>"));
     els.checkoutBtn?.setAttribute("disabled", "true");
     els.checkoutBtn?.classList.add("opacity-50", "cursor-not-allowed");
     els.storeGrid?.querySelectorAll("button[data-action='add']").forEach((btn) => {
@@ -59,7 +72,7 @@ const renderAuth = () => {
       btn.classList.add("opacity-50", "cursor-not-allowed");
     });
     if (els.userLabel) {
-      els.userLabel.innerHTML = "Usuario: <span class=\"badge\">anon</span>";
+      els.userLabel.innerHTML = safeHTML("Usuario: <span class=\"badge\">anon</span>");
     }
   }
 };
@@ -70,10 +83,10 @@ const renderCart = () => {
     els.cartCount.textContent = String(state.cart.length);
   }
   if (state.cart.length === 0) {
-    els.cartItems.innerHTML = '<p class="text-[var(--ink-soft)]">Sin items.</p>';
+    els.cartItems.innerHTML = safeHTML('<p class="text-[var(--ink-soft)]">Sin items.</p>');
     els.cartTotal.textContent = "ARS 0";
     if (state.user) {
-      els.cartStatus && (els.cartStatus.innerHTML = "<span class=\"badge\">agrega items</span>");
+      els.cartStatus && (els.cartStatus.innerHTML = safeHTML("<span class=\"badge\">agrega items</span>"));
     }
     localStorage.setItem(CART_KEY, JSON.stringify(state.cart));
     return;
@@ -92,7 +105,7 @@ const renderCart = () => {
       `
     )
     .join("");
-  els.cartItems.innerHTML = rows;
+  els.cartItems.innerHTML = safeHTML(rows);
 
   const total = state.cart.reduce((acc, item) => acc + item.price, 0);
   els.cartTotal.textContent = formatARS(total);
@@ -125,7 +138,7 @@ const loadCart = () => {
 const initAuth = async () => {
   if (!supabase) {
     if (els.authStatus) {
-      els.authStatus.innerHTML = "Estado: <span class=\"badge blink\">configurar</span>";
+      els.authStatus.innerHTML = safeHTML("Estado: <span class=\"badge blink\">configurar</span>");
     }
     return;
   }
