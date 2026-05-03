@@ -1,0 +1,316 @@
+---
+import "../styles/global.css";
+
+const serverIp = "190.106.0.25:27015";
+const serverName = "UNLu E-Sports | CS 1.6";
+const serverQuery = "https://api.gamemonitoring.net/server/190.106.0.25:27015";
+const serverRules = "https://www.gametracker.com/server_info/190.106.0.25:27015/";
+const serverConnect = `steam://connect/${serverIp}`;
+const mapRotation = ["de_dust2", "de_inferno", "de_nuke", "cs_office", "de_train", "fy_snow"];
+const mods = ["AMX Mod X", "Anti-Cheat", "VIP slots", "Friendly fire off", "FastDL"]; 
+const updates = [
+  "Inscripciones abiertas para el torneo interno de mayo.",
+  "Nueva rotacion nocturna con mapas clasicos.",
+  "Reclutamos casters y admins voluntarios.",
+];
+const storeItems = [
+  {
+    id: "vip-30",
+    name: "VIP 30 dias",
+    desc: "Slot reservado, tag VIP y prioridad de cola.",
+    price: 3500,
+    priceLabel: "ARS 3500",
+  },
+  {
+    id: "skin-pack",
+    name: "Skin Pack Retro",
+    desc: "Pack cosmetico con sprays y modelos clasicos.",
+    price: 2200,
+    priceLabel: "ARS 2200",
+  },
+  {
+    id: "clan-support",
+    name: "Clan Support",
+    desc: "Banner del clan en el server por 30 dias.",
+    price: 5000,
+    priceLabel: "ARS 5000",
+  },
+  {
+    id: "vip-90",
+    name: "VIP 90 dias",
+    desc: "Beneficios VIP + acceso a pruebas privadas.",
+    price: 9000,
+    priceLabel: "ARS 9000",
+  },
+];
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta
+      name="description"
+      content="Servidor Counter-Strike 1.6 UNLu E-Sports. Info del server, IP, estado y novedades con estetica retro 90s."
+    />
+    <title>UNLu E-Sports CS 1.6</title>
+  </head>
+  <body>
+    <div class="marquee">
+      <marquee scrollamount="6">UNLu E-SPORTS - COUNTER STRIKE 1.6 - BIENVENIDOS AL SERVER OFICIAL</marquee>
+    </div>
+    <main class="px-4 py-6 md:py-10">
+      <section class="win-window max-w-5xl mx-auto scanline">
+        <header class="win-titlebar">
+          <div class="flex items-center gap-2">
+            <span>UNLu E-Sports // CS 1.6 Hub</span>
+          </div>
+          <div class="win-controls" aria-hidden="true">
+            <span class="win-control"></span>
+            <span class="win-control"></span>
+            <span class="win-control"></span>
+          </div>
+        </header>
+        <div class="win-content">
+          <div class="flex flex-col gap-6 lg:flex-row">
+            <div class="lg:w-2/3 space-y-4">
+              <div class="win-panel p-4">
+                <h1 class="text-2xl md:text-3xl font-bold">{serverName}</h1>
+                <p class="text-sm text-[var(--ink-soft)]">
+                  Universidad Nacional de Lujan - Comunidad competitiva retro, frag limpio y nostalgia Windows 98.
+                </p>
+                <div class="mt-4 flex flex-col sm:flex-row gap-3">
+                  <div class="win-field text-sm">IP: {serverIp}</div>
+                  <a class="win-button inline-flex items-center justify-center" href={serverConnect}>
+                    Conectar
+                  </a>
+                  <a class="win-button inline-flex items-center justify-center" href={serverRules} target="_blank">
+                    Ver estado
+                  </a>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="win-panel p-4">
+                  <h2 class="font-bold text-lg">Estado del servidor</h2>
+                  <p class="text-sm text-[var(--ink-soft)]">
+                    Consulta automatica via proveedores externos.
+                  </p>
+                  <div class="mt-3 space-y-2 text-sm">
+                    <div class="flex items-center justify-between">
+                      <span>Monitor</span>
+                      <a href={serverQuery} class="badge" target="_blank">LIVE</a>
+                    </div>
+                    <div class="flex items-center justify-between">
+                      <span>Mapa actual</span>
+                      <span class="badge">auto</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                      <span>Jugadores</span>
+                      <span class="badge">auto</span>
+                    </div>
+                  </div>
+                  <p class="mt-3 text-xs">
+                    Si el widget no responde, usa el boton "Ver estado" para datos en vivo.
+                  </p>
+                </div>
+                <div class="win-panel p-4">
+                  <h2 class="font-bold text-lg">Mapas clasicos</h2>
+                  <div class="win-list mt-3 p-3 text-sm grid grid-cols-2 gap-2">
+                    {mapRotation.map((map) => (
+                      <div class="flex items-center gap-2" key={map}>
+                        <span class="badge">MAP</span>
+                        <span>{map}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <aside class="lg:w-1/3 space-y-4">
+              <div class="photo-frame">
+                <img
+                  src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1q7l.webp"
+                  alt="Counter-Strike 1.6 cover"
+                  loading="lazy"
+                />
+              </div>
+              <div class="photo-frame">
+                <img
+                  src="https://images.igdb.com/igdb/image/upload/t_720p/sc8z84.webp"
+                  alt="Counter-Strike 1.6 in-game"
+                  loading="lazy"
+                />
+              </div>
+              <div class="win-panel p-4 text-sm">
+                <h3 class="font-bold">Mods activos</h3>
+                <ul class="mt-2 space-y-1">
+                  {mods.map((mod) => (
+                    <li key={mod} class="flex items-center gap-2">
+                      <span class="badge">OK</span>
+                      <span>{mod}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="max-w-5xl mx-auto mt-6 grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div class="win-window">
+          <header class="win-titlebar">
+            <span>Noticias</span>
+            <div class="win-controls" aria-hidden="true">
+              <span class="win-control"></span>
+              <span class="win-control"></span>
+              <span class="win-control"></span>
+            </div>
+          </header>
+          <div class="win-content text-sm space-y-3">
+            {updates.map((item) => (
+              <div key={item} class="win-panel p-3">
+                <p>{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="win-window">
+          <header class="win-titlebar">
+            <span>Horarios</span>
+            <div class="win-controls" aria-hidden="true">
+              <span class="win-control"></span>
+              <span class="win-control"></span>
+              <span class="win-control"></span>
+            </div>
+          </header>
+          <div class="win-content text-sm space-y-2">
+            <div class="win-panel p-3">
+              <p class="font-bold">Scrims</p>
+              <p>Martes y jueves - 21:00 a 00:30</p>
+            </div>
+            <div class="win-panel p-3">
+              <p class="font-bold">Publico</p>
+              <p>Todos los dias - 18:00 a 02:00</p>
+            </div>
+            <div class="win-panel p-3">
+              <p class="font-bold">Entrenamientos</p>
+              <p>Sabados - 16:00 a 20:00</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="win-window">
+          <header class="win-titlebar">
+            <span>Contacto</span>
+            <div class="win-controls" aria-hidden="true">
+              <span class="win-control"></span>
+              <span class="win-control"></span>
+              <span class="win-control"></span>
+            </div>
+          </header>
+          <div class="win-content text-sm space-y-3">
+            <div class="win-panel p-3">
+              <p class="font-bold">Discord</p>
+              <p>discord.gg/unlu-esports</p>
+            </div>
+            <div class="win-panel p-3">
+              <p class="font-bold">Mail</p>
+              <p>esports@unlu.edu.ar</p>
+            </div>
+            <div class="win-panel p-3">
+              <p class="font-bold">Ubicacion</p>
+              <p>Lujan, Buenos Aires, Argentina</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="max-w-5xl mx-auto mt-6 win-window">
+        <header class="win-titlebar">
+          <span>Tienda UNLu</span>
+          <div class="win-controls" aria-hidden="true">
+            <span class="win-control"></span>
+            <span class="win-control"></span>
+            <span class="win-control"></span>
+          </div>
+        </header>
+        <div class="win-content">
+          <div class="flex flex-col gap-4 lg:flex-row">
+            <div class="lg:w-2/3 space-y-4">
+              <div class="win-panel p-4">
+                <h2 class="font-bold text-lg">Items disponibles</h2>
+                <div class="mt-3 grid grid-cols-1 md:grid-cols-2 gap-3" id="store-grid">
+                  {storeItems.map((item) => (
+                    <div key={item.id} class="win-panel p-3 text-sm">
+                      <div class="flex items-center justify-between">
+                        <p class="font-bold">{item.name}</p>
+                        <span class="badge glow">{item.priceLabel}</span>
+                      </div>
+                      <p class="mt-2">{item.desc}</p>
+                      <button
+                        class="win-button mt-3 w-full"
+                        data-action="add"
+                        data-id={item.id}
+                        data-name={item.name}
+                        data-price={item.price}
+                      >
+                        Agregar al carrito
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <aside class="lg:w-1/3 space-y-4">
+              <div class="win-panel p-4 text-sm">
+                <h3 class="font-bold">Acceso de jugadores</h3>
+                <p class="mt-2">
+                  Ingresa con Google (Supabase OAuth) para sincronizar tus compras con el server.
+                </p>
+                <button class="win-button mt-3 w-full" id="login-btn">Entrar con Google</button>
+                <button class="win-button mt-2 w-full" id="logout-btn" hidden>Salir</button>
+                <div class="mt-2 text-xs" id="auth-status">
+                  Estado: <span class="badge blink">offline</span>
+                </div>
+                <div class="mt-2 text-xs" id="user-label">
+                  Usuario: <span class="badge">anon</span>
+                </div>
+              </div>
+              <div class="win-panel p-4 text-sm">
+                <h3 class="font-bold">Carrito <span class="badge" id="cart-count">0</span></h3>
+                <div class="win-list mt-2 p-2 text-xs" id="cart-items">
+                  <p class="text-[var(--ink-soft)]">Sin items.</p>
+                </div>
+                <div class="mt-2 text-xs" id="cart-status">
+                  <span class="badge blink">logea para comprar</span>
+                </div>
+                <div class="mt-3 flex items-center justify-between text-sm">
+                  <span>Total</span>
+                  <span class="badge" id="cart-total">ARS 0</span>
+                </div>
+                <button class="win-button mt-3 w-full" id="checkout-btn">Pagar con Mercado Pago</button>
+              </div>
+              <div class="win-panel p-4 text-xs">
+                <p>
+                  Checkout Mercado Pago usa un endpoint interno. Necesitas configurar las variables
+                  de entorno y webhooks para activar la pasarela.
+                </p>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script>
+      window.__SUPABASE_URL__ = import.meta.env.PUBLIC_SUPABASE_URL;
+      window.__SUPABASE_ANON_KEY__ = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+    </script>
+    <script type="module" src="/store.js"></script>
+  </body>
+</html>

@@ -1,0 +1,197 @@
+@import "tailwindcss";
+
+:root {
+  --bg-1: #c3c7cb;
+  --bg-2: #b4b8bb;
+  --bg-3: #e3e3e3;
+  --ink: #1b1b1b;
+  --ink-soft: #3d3d3d;
+  --accent: #0a64ad;
+  --accent-dark: #063a66;
+  --cream: #fff7d6;
+  --win-light: #ffffff;
+  --win-mid: #d6d6d6;
+  --win-shadow: #8a8a8a;
+  --win-dark: #3e3e3e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: "MS Sans Serif", "Microsoft Sans Serif", "Tahoma", "Verdana", "Geneva", sans-serif;
+  background-color: var(--bg-1);
+  background-image:
+    linear-gradient(0deg, rgba(255, 255, 255, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.25) 1px, transparent 1px),
+    linear-gradient(180deg, var(--bg-2), var(--bg-1));
+  background-size: 28px 28px, 28px 28px, 100% 100%;
+  background-attachment: fixed;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Trebuchet MS", "Lucida Sans", "Tahoma", sans-serif;
+}
+
+.win-window {
+  background: var(--bg-3);
+  border: 2px solid var(--win-dark);
+  box-shadow:
+    inset 2px 2px 0 var(--win-light),
+    inset -2px -2px 0 var(--win-shadow),
+    6px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+.win-titlebar {
+  background: linear-gradient(90deg, var(--accent-dark), var(--accent));
+  color: #fff;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-shadow: 1px 1px 0 #000;
+}
+
+.win-controls {
+  display: flex;
+  gap: 6px;
+}
+
+.win-control {
+  width: 14px;
+  height: 14px;
+  background: var(--bg-3);
+  border: 1px solid var(--win-dark);
+  box-shadow: inset 1px 1px 0 var(--win-light), inset -1px -1px 0 var(--win-shadow);
+}
+
+.win-content {
+  padding: 18px;
+}
+
+.win-panel {
+  background: var(--cream);
+  border: 2px solid var(--win-shadow);
+  box-shadow: inset 2px 2px 0 var(--win-light), inset -2px -2px 0 var(--win-shadow);
+}
+
+.win-button {
+  background: var(--bg-3);
+  border: 2px solid var(--win-shadow);
+  padding: 6px 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  box-shadow: inset 2px 2px 0 var(--win-light), inset -2px -2px 0 var(--win-dark);
+}
+
+.win-button:active {
+  box-shadow: inset -2px -2px 0 var(--win-light), inset 2px 2px 0 var(--win-dark);
+}
+
+.win-field {
+  background: #fff;
+  border: 2px solid var(--win-shadow);
+  box-shadow: inset 2px 2px 0 var(--win-light), inset -2px -2px 0 var(--win-shadow);
+  padding: 6px 10px;
+  font-family: "Courier New", "Lucida Console", monospace;
+}
+
+.win-input {
+  width: 100%;
+  background: #fff;
+  border: 2px solid var(--win-shadow);
+  box-shadow: inset 2px 2px 0 var(--win-light), inset -2px -2px 0 var(--win-shadow);
+  padding: 8px 10px;
+  font-family: "Courier New", "Lucida Console", monospace;
+}
+
+.win-list {
+  border: 2px solid var(--win-shadow);
+  background: #fff;
+  box-shadow: inset 2px 2px 0 var(--win-light), inset -2px -2px 0 var(--win-shadow);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #000;
+  color: #00ff66;
+  padding: 4px 8px;
+  font-family: "Lucida Console", "Courier New", monospace;
+  border: 1px solid #00ff66;
+}
+
+.scanline {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanline::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.05) 0,
+    rgba(0, 0, 0, 0.05) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+}
+
+.marquee {
+  background: #000;
+  color: #ffea00;
+  font-weight: 700;
+  padding: 6px 0;
+  border-top: 2px solid var(--win-dark);
+  border-bottom: 2px solid var(--win-dark);
+  text-transform: uppercase;
+}
+
+.photo-frame {
+  border: 3px solid var(--win-dark);
+  box-shadow: inset 2px 2px 0 var(--win-light), inset -2px -2px 0 var(--win-shadow);
+  background: #000;
+}
+
+.photo-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: saturate(0.9) contrast(1.05);
+}
+
+.blink {
+  animation: blink 1.6s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.glow {
+  text-shadow: 0 0 6px rgba(0, 255, 102, 0.65);
+}
